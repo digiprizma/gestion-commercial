@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" *ngIf="isAuthenticated()" >
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">DigiPrizma</a>
@@ -18,8 +18,8 @@
     <ul class="nav navbar-nav pull-right">
       <li>
 
-        <a *ngIf="!isAuthenticated()" routerLink="/login"> <span class="glyphicon glyphicon-user"></span> Connexion</a>
-        <a class="btn" *ngIf="isAuthenticated()"  (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a>
+
+        <a class="btn" *ngIf="isAuthenticated()"  (click)="logOut()" routerLink="/login"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a>
       </li>
 
     </ul>

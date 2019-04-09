@@ -43,7 +43,9 @@ export class LoginService {
 
   loadToken() {
     this.jwt=localStorage.getItem('token');
-    this.parseJWT();
+    if(this.jwt != null) {
+      this.parseJWT();
+    }
   }
 
   logOut() {

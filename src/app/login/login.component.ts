@@ -25,4 +25,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  isAuthenticated(){
+    return this.loginService.isAuthenticated();
+  }
+
 }

@@ -9,21 +9,19 @@
       </div>
       <p></p>
       <div *ngIf="node=='newcat'" class="col-md-6">
-        <form #f="ngForm"  data-toggle="validator" role="form"  (ngSubmit)="onSaveCategorie(f.value)">
+        <form #f="ngForm" ngNativeValidate (ngSubmit)="onSaveCategorie(f.value)">
           <div class="form-group">
-            <label for="name">Designation</label>
-            <input type="text" id="name" ngModel class="form-control" placeholder="nom de categorie" required>
-            <div class="help-block with-errors"></div>
+            <label>Designation</label>
+            <input type="text" name="name" ngModel class="form-control is-invalid" placeholder="nom de categorie" required>
           </div>
           <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-check"></span> Valider</button>
         </form>
-
       </div>
       <div *ngIf="node=='editcat'" class="col-md-6">
-        <form #f="ngForm" (ngSubmit)="onEditCategorie(f.value)">
+        <form #f="ngForm" (ngSubmit)="onEditCategorie(f.value)" ngNativeValidate>
           <div class="form-group">
             <label class="control-label">Designation</label>
-            <input type="text" name="name" ngModel class="form-control" [(ngModel)] = "currentCategorie.name">
+            <input type="text" name="name" ngModel class="form-control" [(ngModel)] = "currentCategorie.name" required>
           </div>
           <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-check"></span> Modifier</button>
         </form>
@@ -35,12 +33,12 @@
         <tr *ngFor="let c of categories._embedded.categories">
           <td>{{c.name}}</td>
           <td>
-            <button class="btn btn-danger" (click)="onDelete(c)">
+            <button class="btn btn-danger" (click)="onDelete(c)" data-toggle="tooltip" data-placement="top" title="Supprimer">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
           </td>
           <td>
-            <button class="btn btn-primary" (click)="onEdit(c)">
+            <button class="btn btn-primary" (click)="onEdit(c)" data-toggle="tooltip" data-placement="top" title="Modifier">
               <span class="glyphicon glyphicon-pencil"></span>
             </button>
           </td>

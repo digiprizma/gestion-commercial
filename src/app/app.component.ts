@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,14 @@ export class AppComponent implements OnInit {
 
   title = 'gestion-commerciale';
 
-  constructor(private loginService:LoginService){}
+  constructor(private loginService:LoginService,private router:Router){}
 
   ngOnInit(): void {
     this.loginService.loadToken();
+    if(!this.isAuthenticated()){
+      console.log("routin rul");
+      this.router.navigateByUrl("login");
+    }
   }
 
   isAdmin(){

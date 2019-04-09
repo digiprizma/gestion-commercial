@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GestionProduitService} from '../gestion-produit.service';
 import {Router} from '@angular/router';
+import {LoginService} from '../login.service';
 
 
 
@@ -14,7 +15,7 @@ export class CategoriesComponent implements OnInit {
   categories;
   products;
   currentGategories;
-  constructor(private gestionProduitService: GestionProduitService, private router:Router) { }
+  constructor(private gestionProduitService: GestionProduitService, private router:Router, private loginService:LoginService) { }
 
   ngOnInit() {
     this.gestionProduitService.getAllCategories().subscribe( data => {
@@ -32,4 +33,7 @@ export class CategoriesComponent implements OnInit {
   }
 
 
+  isAuthenticated() {
+    return this.loginService.isAuthenticated();
+  }
 }
