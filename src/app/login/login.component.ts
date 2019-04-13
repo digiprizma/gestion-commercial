@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../login.service';
+import {LoginService} from './service/login.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  msg=undefined;
   constructor(private loginService:LoginService,private router:Router) { }
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
       this.loginService.saveToken(jwt);
       this.router.navigateByUrl("/");
     },err=>{
-      console.log(err);
+      this.msg = 'Veuillez verifier votre \'Nom d\'utilisateur (et/ou) le mot de passe\'';
     })
   }
 

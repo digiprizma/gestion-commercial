@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GestionProduitService} from '../gestion-produit.service';
 import {Router} from '@angular/router';
-import {LoginService} from '../login.service';
+import {LoginService} from '../login/service/login.service';
 
 
 

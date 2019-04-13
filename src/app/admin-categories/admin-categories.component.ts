@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GestionProduitService} from '../gestion-produit.service';
-import {LoginService} from '../login.service';
+import {LoginService} from '../login/service/login.service';
 
 @Component({
   selector: 'app-admin-categories',
@@ -12,7 +12,7 @@ export class AdminCategoriesComponent implements OnInit {
   currentCategorie;
   categories;
   node='list';
-
+  updateMsg;
   constructor(private gestionProductService:GestionProduitService,private loginService:LoginService) { }
 
   ngOnInit() {
@@ -28,8 +28,6 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   onDelete(c) {
-    let confir= confirm("Etes vous sure de vouloir supprimer la categorie :"+c.name);
-    if(!confir) return;
     this.gestionProductService.deleteRessource(c._links.self.href).subscribe(data=>{
       this.onGetAllCategories();
     },err=>{
@@ -74,5 +72,11 @@ export class AdminCategoriesComponent implements OnInit {
 
   isAuthenticated(){
     return this.loginService.isAuthenticated();
+  }
+
+  onSelectDelete(c) {
+    console.log(c);
+    this.currentCategorie = c;
+    console.log(this.currentCategorie);
   }
 }

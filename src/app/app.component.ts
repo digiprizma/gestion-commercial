@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from './login.service';
+import {LoginService} from './login/service/login.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -17,8 +17,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.loadToken();
+    console.log("routin rul"+this.router.getCurrentNavigation());
     if(!this.isAuthenticated()){
-      console.log("routin rul");
+      console.log("routin rul"+this.router.getCurrentNavigation());
       this.router.navigateByUrl("login");
     }
   }

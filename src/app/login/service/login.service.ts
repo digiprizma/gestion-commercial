@@ -59,5 +59,3 @@ export class LoginService {
     this.roles=undefined;
   }
 }
-
-

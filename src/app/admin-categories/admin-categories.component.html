@@ -14,7 +14,14 @@
             <label>Designation</label>
             <input type="text" name="name" ngModel class="form-control is-invalid" placeholder="nom de categorie" required>
           </div>
-          <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-check"></span> Valider</button>
+          <div class="row">
+            <div class="col-xs-4">
+              <button class="btn btn-block btn-info"type="submit"><span class="glyphicon glyphicon-check"></span>  Valider</button>
+            </div>
+            <div class="col-xs-4">
+              <button class="btn btn-block btn-danger" type="reset" (click)="node='list'"><span class="glyphicon glyphicon-remove-circle"></span> Annuler</button>
+            </div>
+          </div>
         </form>
       </div>
       <div *ngIf="node=='editcat'" class="col-md-6">
@@ -23,7 +30,14 @@
             <label class="control-label">Designation</label>
             <input type="text" name="name" ngModel class="form-control" [(ngModel)] = "currentCategorie.name" required>
           </div>
-          <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-check"></span> Modifier</button>
+          <div class="row">
+            <div class="col-xs-4">
+              <button class="btn btn-block btn-info"type="submit"><span class="glyphicon glyphicon-check"></span>  Modifier</button>
+            </div>
+            <div class="col-xs-4">
+              <button class="btn btn-block btn-danger" type="reset" (click)="node='list'"><span class="glyphicon glyphicon-remove-circle"></span> Annuler</button>
+            </div>
+          </div>
         </form>
 
       </div>
@@ -33,17 +47,39 @@
         <tr *ngFor="let c of categories._embedded.categories">
           <td>{{c.name}}</td>
           <td>
-            <button class="btn btn-danger" (click)="onDelete(c)" data-toggle="tooltip" data-placement="top" title="Supprimer">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
-          </td>
-          <td>
             <button class="btn btn-primary" (click)="onEdit(c)" data-toggle="tooltip" data-placement="top" title="Modifier">
               <span class="glyphicon glyphicon-pencil"></span>
             </button>
           </td>
+          <td>
+            <button class="btn btn-danger"  data-toggle="modal" data-target="#deleteModal" (click)="onSelectDelete(c)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <!-- (click)="onDelete(c) -->
+            <div class="modal fade" id="deleteModal" role="dialog" *ngIf="currentCategorie">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Supression</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Etes-vous sûr de vouloir supprimer la categorie {{currentCategorie.name}} ?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onDelete(currentCategorie)">Valider</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
         </tr>
       </table>
+        <!-- Modal -->
+
+      </div>
       </div>
   </div>
-</div>
+

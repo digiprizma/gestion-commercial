@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#">DigiPrizma</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Accueil</a></li>
+      <li class="none "><a href="#">Accueil</a></li>
       <li class="dropdown" *ngIf="isAuthenticated()">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
           <span class="caret"></span></a>
@@ -17,11 +17,8 @@
     </ul>
     <ul class="nav navbar-nav pull-right">
       <li>
-
-
         <a class="btn" *ngIf="isAuthenticated()"  (click)="logOut()" routerLink="/login"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a>
       </li>
-
     </ul>
   </div>
 </nav>
@@ -31,8 +28,6 @@
   </div>
   <div class="col-md-9">
 <router-outlet>
-
 </router-outlet>
   </div>
-
 </div>
